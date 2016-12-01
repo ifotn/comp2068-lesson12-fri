@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COMP2068 | MEAN Stack Single Page App</title>
+
+    <!--css -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <a class="navbar-brand" href="/">COMP2068 MEAN Stack SPA</a>
+    <ul class="nav navbar-nav">
+        <li><a href="/"></a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+    <h1>Drink Manager</h1>
+
+    <section class="form-group jumbotron">
+        <h2>Drink Details</h2>
+        <form>
+            <fieldset class="form-group">
+                <label for="name" class="control-label col-sm-3">Title:</label>
+                <input name="name" id="name" ng-model="" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="drinkType" class="control-label col-sm-3">Type:</label>
+                <select name="drinkType" id="drinkType" ng-model="">
+                  <option>Sangria</option>
+                  <option>Vodka</option>
+                  <option>Whiskey</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="size" class="control-label col-sm-3">Size:</label>
+                <input name="size" id="size" ng-model="" />
+                <select name="units" id="units" ng-model="">
+                  <option>ml</option>
+                  <option>oz</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="alcoholPercentage" class="control-label col-sm-3">Alcohol %:</label>
+                <input name="alcoholPercentage" id="alcoholPercentage" ng-model="alcoholPercentage" type="number" min="0" />
+            </fieldset>
+            <button class="btn btn-success col-sm-offset-3">Add</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Drink List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Alcohol %</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button class="btn btn-primary">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        </table>
+    </section>
+
+</main>
+
+<!--js-->
+<script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/jquery-3.1.1.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/scripts.js"></script>
+
+<footer class="alert alert-info">
+    &copy; 2016 | COMP2068 - Advanced Web Programming
+</footer>
+
+</body>
+</html>
+
