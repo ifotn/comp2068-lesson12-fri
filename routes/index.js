@@ -9,4 +9,44 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+// GET /drinks
+router.get('/drinks', function(req, res, next) {
+  Drink.find(function(err, drinks) {
+    if (err) {
+      return next(err);
+    }
+
+    // no error, so send back json data
+    res.json(drinks);
+
+  });
+});
+
+// POST /drinks
+router.post('/drinks', function(req, res, next) {
+  // pass the entire request body (the new drink json)
+  var newDrink = new Drink(req.body);
+
+  newDrink.save(function(err, drink) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(drink);
+  });
+});
+
+// DELETE /drinks/_id
+router.delete('/drinks/:_id', function(req, res, next) {
+  var _id = req.params._id;
+
+  Drink.remove({ _id: _id }, function(err, drink) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(drink);
+  });
+});
+
 module.exports = router;

@@ -17,7 +17,7 @@
     </ul>
 </nav>
 
-<main class="container">
+<main class="container" ng-app="DrinkApp" ng-controller="DrinkController" ng-init="getDrinks()">
 
     <h1>Drink Manager</h1>
 
@@ -26,11 +26,11 @@
         <form>
             <fieldset class="form-group">
                 <label for="name" class="control-label col-sm-3">Title:</label>
-                <input name="name" id="name" ng-model="" />
+                <input name="name" id="name" ng-model="currentDrink.name" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="drinkType" class="control-label col-sm-3">Type:</label>
-                <select name="drinkType" id="drinkType" ng-model="">
+                <select name="drinkType" id="drinkType" ng-model="currentDrink.drinkType">
                   <option>Sangria</option>
                   <option>Vodka</option>
                   <option>Whiskey</option>
@@ -38,17 +38,17 @@
             </fieldset>
             <fieldset class="form-group">
                 <label for="size" class="control-label col-sm-3">Size:</label>
-                <input name="size" id="size" ng-model="" />
-                <select name="units" id="units" ng-model="">
+                <input name="size" id="size" ng-model="currentDrink.size" />
+                <select name="units" id="units" ng-model="currentDrink.units">
                   <option>ml</option>
                   <option>oz</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
                 <label for="alcoholPercentage" class="control-label col-sm-3">Alcohol %:</label>
-                <input name="alcoholPercentage" id="alcoholPercentage" ng-model="alcoholPercentage" type="number" min="0" />
+                <input name="alcoholPercentage" id="alcoholPercentage" ng-model="currentDrink.alcoholPercentage" type="number" min="0" />
             </fieldset>
-            <button class="btn btn-success col-sm-offset-3">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="addDrink()">Add</button>
         </form>
     </section>
 
@@ -63,13 +63,13 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr ng-repeat="d in drinks track by $index">
+                <td>{{ d.name }}</td>
+                <td>{{ d.drinkType }}</td>
+                <td>{{ d.size }} {{ d.units }}</td>
+                <td>{{ d.alcoholPercentage }}</td>
                 <td><button class="btn btn-primary">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button class="btn btn-danger" ng-click="deleteDrink(d._id, $index)">Delete</button></td>
             </tr>
         </table>
     </section>
@@ -78,6 +78,7 @@
 
 <!--js-->
 <script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/angular-ui-router.js"></script>
 <script src="/javascripts/jquery-3.1.1.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/scripts.js"></script>
