@@ -31,10 +31,20 @@ app.factory('DrinkFactory', ['$http', function($http) {
    };
 
    // DELETE
-   d.deleteDrink = function(_id, index) {
+   d.deleteDrink = function(_id) {
      return $http.delete('/drinks/' + _id).success(function(data) {
         //d.drinks.splice(index,  1);
      });
+   };
+
+   // SELECT
+   d.selectDrink = function(_id) {
+     return $http.get('/drinks/' + _id).success(function(data) { } );
+   };
+
+   // UPDATE
+   d.updateDrink = function(drink) {
+     return $http.put('/drinks/' + drink._id, drink).success(function(data) {} );
    };
 
    // return the current drinks list
@@ -69,12 +79,33 @@ app.controller('DrinkController', ['$scope', 'DrinkFactory', function($scope, Dr
    };
 
    // DELETE
-   $scope.deleteDrink = function(_id, index) {
+   $scope.deleteDrink = function(_id) {
       if (confirm('This drink rocks!  Are you sure you don\'t want it??')) {
-        DrinkFactory.deleteDrink(_id,  index);
+        DrinkFactory.deleteDrink(_id);
 
          $scope.getDrinks();
       }
+   };
+
+   // SELECT
+   $scope.selectDrink = function(_id) {
+      // look up the selected drink
+      DrinkFactory.selectDrink(_id).then(function(response) {
+         $scope.currentDrink = response.data;
+      });
+   };
+
+   // UPDATE
+   $scope.updateDrink = function() {
+     DrinkFactory.updateDrink($scope.currentDrink).then(function(response) {
+        $scope.getDrinks();
+        $scope.clearDrink();
+     });
+   };
+
+   // CLEAR
+   $scope.clearDrink = function() {
+      $scope.currentDrink = null;
    };
 
 }]);

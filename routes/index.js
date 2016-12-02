@@ -49,4 +49,30 @@ router.delete('/drinks/:_id', function(req, res, next) {
   });
 });
 
+// GET /drinks/_id
+router.get('/drinks/:_id', function(req, res, next) {
+  var _id = req.params._id;
+
+  Drink.findById({ _id: _id }, function(err, drink) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(drink);
+  });
+});
+
+// PUT /drinks/_id
+router.put('/drinks/:_id', function(req, res, next) {
+  var _id = req.params._id;
+
+  Drink.update({ _id: _id }, req.body, function(err, drink) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(drink);
+  });
+});
+
 module.exports = router;

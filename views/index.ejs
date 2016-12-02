@@ -48,7 +48,10 @@
                 <label for="alcoholPercentage" class="control-label col-sm-3">Alcohol %:</label>
                 <input name="alcoholPercentage" id="alcoholPercentage" ng-model="currentDrink.alcoholPercentage" type="number" min="0" />
             </fieldset>
-            <button class="btn btn-success col-sm-offset-3" ng-click="addDrink()">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="addDrink()" ng-hide="currentDrink._id">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="updateDrink()" ng-show="currentDrink._id">Update</button>
+            <button class="btn btn-success" ng-click="clearDrink()">Clear</button>
+            <input name="_id" id="_id" ng-model="currentDrink._id" type="hidden" />
         </form>
     </section>
 
@@ -68,8 +71,8 @@
                 <td>{{ d.drinkType }}</td>
                 <td>{{ d.size }} {{ d.units }}</td>
                 <td>{{ d.alcoholPercentage }}</td>
-                <td><button class="btn btn-primary">Edit</button></td>
-                <td><button class="btn btn-danger" ng-click="deleteDrink(d._id, $index)">Delete</button></td>
+                <td><button class="btn btn-primary" ng-click="selectDrink(d._id)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="deleteDrink(d._id)">Delete</button></td>
             </tr>
         </table>
     </section>
